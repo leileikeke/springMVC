@@ -39,6 +39,7 @@
         只加这个的话相当于全部让他处理了-->
     <mvc:default-servlet-handler/>
     <!-- 为了让controller生效,要加这个注解驱动-->
+    <!--激活springmvc消息转换功能-->
     <mvc:annotation-driven/>
 <!--    <mvc:resources mapping="/static/css/*" location="/static/css/"/>-->
 </beans>
