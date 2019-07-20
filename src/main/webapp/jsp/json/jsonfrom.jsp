@@ -9,12 +9,14 @@
 <html>
 <head>
     <title>json</title>
+    <script src="${ctx}/static/plugins/jQuery/jquery-1.12.4.min.js"></script>
 </head>
 <body>
-    <button>请求得到一个User</button>
-    <button>请求得到一个Map</button>
-    <button>请求得到一个数组[]</button>
-    <button>请求得到一个List</button>
+<button id="b1">请求得到一个User</button>
+<button id="b2">请求得到一个Map</button>
+<button id="b3">请求得到一个List</button>
+<button id="b4">请求得到一个数组[]</button>
+
 <%--    <form action="/json" method="post">--%>
 <%--        用户名:--%>
 <%--        <input type="text" name="name"><br>--%>
@@ -24,5 +26,55 @@
 <%--        <input type="date" name="birthday"><br>--%>
 <%--        <input type="submit" value="提交">--%>
 <%--    </form>--%>
+
+<script>
+    $(function () {
+        $('#b1').click(function () {
+            $.ajax({
+                url: '${ctx}/json/m1',
+                type: 'post',
+                success: function (data) {
+                    alert(data.name);
+                    alert(data.id);
+                    alert(data.price);
+                }
+            })
+        })
+        $('#b2').click(function () {
+            $.ajax({
+                url: '${ctx}/json/m2',
+                type: 'post',
+                success: function (data) {
+                    //有点小差别懒得改
+                    alert(data.name);
+                    alert(data.id);
+                    alert(data.price);
+                }
+            })
+        })
+        $('#b3').click(function () {
+            $.ajax({
+                url: '${ctx}/json/m3',
+                type: 'post',
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        alert(data[i].name);
+                    }
+                }
+            })
+        })
+        $('#b4').click(function () {
+            $.ajax({
+                url: '${ctx}/json/m4',
+                type: 'post',
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        alert(data[i].name);
+                    }
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>
