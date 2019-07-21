@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * @description:
@@ -17,8 +21,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class JsonController2 {
 
     @RequestMapping("/add")
+    @ResponseBody
     public String add(@RequestBody Order order){
         System.out.println(order);
         return "ok";
+    }
+    @RequestMapping("/addList")
+    @ResponseBody
+    public Map<String,Integer> addList(@RequestBody List<Order> orders){
+        System.out.println(orders);
+        Map<String,Integer> map = new HashMap<>();
+        map.put("code",2000);
+        return map;
     }
 }

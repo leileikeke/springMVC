@@ -1,5 +1,6 @@
 package com.leike.controller;
 
+import com.leike.constant.ResponseCode;
 import com.leike.pojo.User;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -63,5 +64,24 @@ public class UserController {
 //        Map<String, String> map = new HashMap<>();
 //        map.put("msg","ok");
         return "ok";
+    }
+
+    @PostMapping("/checkname")
+    @ResponseBody
+    public Map<String,Integer> checkname(@RequestBody User user){
+        Map<String,Integer> map = new HashMap<>();
+        int code = ResponseCode.CAN_USE;
+
+        //如果输入的用户名不是空
+        if (!user.getName().isEmpty()){
+            //当输入的用户名未注册
+            if (user.getName().equals("gg")){
+                code = ResponseCode.HAS_USE;
+            }
+        }else {
+            code = 300;
+        }
+        map.put("code",code);
+        return map;
     }
 }
