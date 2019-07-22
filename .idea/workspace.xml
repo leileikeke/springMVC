@@ -7,13 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75c164aa-1b89-4076-872e-2050a5254a0a" name="Default Changelist" comment="xml格式数据传输">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/leike/controller/FileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/file/upload.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/file/uploadSuc.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/leike/controller/DownloadController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/springmvc-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/springMVC/WEB-INF/classes/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/springMVC/WEB-INF/classes/springmvc-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,28 +28,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/FileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="891">
-              <caret line="33" selection-start-line="33" selection-end-line="42" selection-end-column="11" />
+            <state relative-caret-position="397">
+              <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/file/upload.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/DownloadController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+            <state relative-caret-position="180">
+              <caret line="27" column="51" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/FileController.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/HelloContreler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+            <state relative-caret-position="486">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,8 +87,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2673">
-              <caret line="99" selection-start-line="99" selection-end-line="105" selection-end-column="17" />
+            <state relative-caret-position="585">
+              <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="7577">
+                <caret line="961" selection-start-line="961" selection-end-line="961" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -99,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2403">
+            <state relative-caret-position="341">
               <caret line="89" selection-start-line="89" selection-end-line="93" selection-end-column="7" />
             </state>
           </provider>
@@ -108,7 +122,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1782">
+            <state relative-caret-position="675">
               <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -123,8 +137,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="spring-beans.schema" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -134,8 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/bye.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leike/controller/ByeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leike/controller/Orders.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leike/pojo/Orders.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/order.jsp" />
@@ -185,6 +197,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/file/uploadSuc.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/file/upload.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/leike/controller/FileController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leike/controller/DownloadController.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -238,8 +252,8 @@
     <option name="skipTests" value="true" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="793" />
-    <option name="y" value="296" />
+    <option name="x" value="-279" />
+    <option name="y" value="106" />
     <option name="width" value="1067" />
     <option name="height" value="660" />
   </component>
@@ -495,7 +509,7 @@
       <workItem from="1563635661780" duration="1439000" />
       <workItem from="1563688112276" duration="14722000" />
       <workItem from="1563721345701" duration="2180000" />
-      <workItem from="1563776178561" duration="597000" />
+      <workItem from="1563776178561" duration="3152000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1563523464359</created>
@@ -553,14 +567,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563711432264</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="文件上传">
+      <created>1563777602088</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1563777602088</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88987000" />
+    <option name="totallyTimeSpent" value="91542000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49844238" visible="true" weight="0.16471216" />
@@ -605,33 +626,10 @@
     <MESSAGE value="json数据交互-前传后" />
     <MESSAGE value="json数据交互+layui使用" />
     <MESSAGE value="xml格式数据传输" />
-    <option name="LAST_COMMIT_MESSAGE" value="xml格式数据传输" />
+    <MESSAGE value="文件上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="文件上传" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/ProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/forword.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.5.RELEASE/spring-web-5.1.5.RELEASE.jar!/org/springframework/web/filter/CharacterEncodingFilter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.5.RELEASE/spring-web-5.1.5.RELEASE-sources.jar!/org/springframework/web/filter/CharacterEncodingFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -643,16 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
           <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/HelloContreler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -756,16 +744,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="9909">
-            <caret line="367" selection-start-line="367" selection-end-line="367" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -976,27 +954,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2673">
-          <caret line="99" selection-start-line="99" selection-end-line="105" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/index.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/HelloContreler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2403">
-          <caret line="89" selection-start-line="89" selection-end-line="93" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+        <state relative-caret-position="486">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1005,11 +969,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+        <state relative-caret-position="397">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="89" selection-start-line="89" selection-end-line="93" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/nio/file/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="3056" column="27" lean-forward="true" selection-start-line="3056" selection-start-column="27" selection-end-line="3056" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar!/javax/servlet/ServletResponse.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leike/controller/DownloadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="27" column="51" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="7577">
+            <caret line="961" selection-start-line="961" selection-end-line="961" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
