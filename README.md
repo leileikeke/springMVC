@@ -211,7 +211,24 @@ springmvc 支持 ant 风格
 ### ==@Responsebody==
 
 - 返回数据的 , 一般情况下返回json格式
-- 
+
+    ```java
+    //@Controller
+    @RestController // == @Controller+@ResponseBody  当整个Controller都是用于返回json的时候使用
+    @RequestMapping("/json")
+    public class JsonController {
+    
+        @RequestMapping("/m1")
+        //    @ResponseBody
+        public Order m1() {
+    
+            Order order = new Order("1", "leike", 12.3);
+    
+            return order;
+        }}
+    ```
+
+    
 
 ### ==@ModeraAttribute==
 
@@ -305,7 +322,9 @@ springmvc 支持 ant 风格
 
 ![](C:\Users\leike\Documents\我的md笔记\images\PathVariable方式请求.png)
 
+### ==@RestController==--返回json数据时候用
 
+- 相当于于@Controller+@ResponseBody
 
 ## 关于静态资源访问的问题
 
@@ -324,7 +343,6 @@ springmvc 支持 ant 风格
 <mvc:default-servlet-handler/>
 <!-- 为了让controller生效,要加这个注解驱动-->
 <mvc:annotation-driven/>
-
 ```
 
 解决方式二   通过映射关系描述 , 一 一 对编写规则	
@@ -333,7 +351,6 @@ springmvc 支持 ant 风格
 <mvc:resources mapping="/static/css/*" location="/static/css/"/>
 <!-- 为了让controller生效,要加这个注解驱动-->
 <mvc:annotation-driven/>
-
 ```
 
 解决方式三  自行在web.xml定义映射规则
@@ -360,7 +377,6 @@ springmvc 支持 ant 风格
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
 ```
 
 
@@ -391,7 +407,6 @@ springmvc 支持 ant 风格
         </form>
     </body>
     </html>
-    
     ```
 
     ```java
@@ -411,7 +426,6 @@ springmvc 支持 ant 风格
             return "ok";
         }
     }
-    
     ```
 
     
@@ -439,7 +453,6 @@ springmvc 支持 ant 风格
             return "ok";
         }
     }
-    
     ```
 
 ### 方式三 直接使用pojo形式传递
@@ -459,7 +472,6 @@ springmvc 支持 ant 风格
     //        map.put("msg","ok");
             return "ok";
         }
-    
     ```
 
 ### 方式四 -- 关于form表单提交日期格式数据问题的处理
@@ -482,7 +494,6 @@ springmvc 支持 ant 风格
         return "ok";
     }
     //通过initBinder指定了user名字和modelAttribute里面user绑定
-    
     ```
 
 2. 不指定名字,根据数据类型一样可以分析解析转换成功
@@ -492,7 +503,459 @@ springmvc 支持 ant 风格
     ```java
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
+    ```
+
+## json数据交互
+
+### 额外依赖
+
+```xml
+    <!--json依赖-->
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.9.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.9.9</version>
+    </dependency>
+<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+<dependency>
+    <groupId>net.sf.json-lib</groupId>
+    <artifactId>json-lib</artifactId>
+    <version>2.4</version>
+    <classifier>jdk15</classifier>
+</dependency>
+<!--添加处理json为javabean-->
+<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
+<dependency>
+    <groupId>org.codehaus.jackson</groupId>
+    <artifactId>jackson-core-asl</artifactId>
+    <version>1.9.13</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+<dependency>
+    <groupId>org.codehaus.jackson</groupId>
+    <artifactId>jackson-mapper-asl</artifactId>
+    <version>1.9.13</version>
+</dependency>
+<!--添加处理json为javabean ==end== -->
+```
+
+另外记得添加
+
+```xml
+	<!--激活springmvc消息转换功能-->
+    <mvc:annotation-driven/>
+```
+
+### JSON数据返回前台以及如何解析
+
+#### Json后台返回
+
+- 返回POJO
+
+    ```java
+    @RequestMapping("/m1")
+    //    @ResponseBody
+    public Order m1(){
+    
+        Order order = new Order("1", "leike", 12.3);
+    
+        return order;
+    }
+    ```
+
+    
+
+- 返回Map
+
+    ```java
+    @RequestMapping("/m2")
+    //    @ResponseBody
+    public Map<String,Object> m2(){
+    
+        Map<String, Object> map = new HashMap<>();
+        Order order = new Order("1", "lk", 12.3);
+        Order order1 = new Order("2", "lk2", 12.3);
+        Order order2 = new Order("3", "lk3", 12.3);
+    
+        map.put("1",order);
+        map.put("2",order1);
+        map.put("3",order2);
+    
+        return map;
+    }
     
     ```
 
     
+
+- 返回List
+
+    ```java
+    @RequestMapping("/m3")
+    //    @ResponseBody
+    public List<Order> m3(){
+    
+        List<Order> list = new ArrayList<>();
+        Order order = new Order("1", "lk", 12.3);
+        Order order1 = new Order("2", "lk2", 12.3);
+        Order order2 = new Order("3", "lk3", 12.3);
+    
+        list.add(order);
+        list.add(order1);
+        list.add(order2);
+        return list;
+    }
+    
+    ```
+
+    
+
+- 返回数组
+
+    ```java
+    @RequestMapping("/m4")
+    //    @ResponseBody
+    public Order[] m4() {
+    
+        Order[] list = {new Order("1", "lk", 12.3),
+                        new Order("2", "lk2", 12.3),
+                        new Order("3", "lk3", 12.3)};
+    
+        return list;
+    }
+    ```
+
+    
+
+#### Json前台解析
+
+- 解析返回的pojo
+
+    ```js
+    $('#b1').click(function () {
+        $.ajax({
+            url:'${ctx}/json/m1',
+            type:'post',
+            success:function (data) {
+                alert(data.name);
+                alert(data.id);
+                alert(data.price);
+            }
+        })
+    })
+    ```
+
+- 解析返回的Map
+
+    同上
+
+- 解析返回的List
+
+    ```js
+    $('#b3').click(function () {
+        $.ajax({
+            url: '${ctx}/json/m3',
+            type: 'post',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    alert(data[i].name);
+                }
+            }
+        })
+    })
+    
+    ```
+
+- 解析数组
+
+    同上
+
+### JSON数据如何使用Ajax提交到后台,后台如何解析
+
+- 设置请求格式为json
+
+```js
+contentType:"application/json;charset=utf-8"
+
+```
+
+- 前台写法  --  发送一个pojo
+
+    ```js
+    $(function () {
+        $('#b').click(function () {
+            var obj={
+                id:'1',
+                name:'爷们',
+                price:'22.1'
+            }
+            $.ajax({
+                url:'${ctx}/json2/add',
+                type:'post',
+                contentType: "application/json",
+                data:JSON.stringify(obj),
+                succese:function (data) {
+                    alert(data);
+                }
+            })
+        })
+    })
+    
+    ```
+
+    
+
+- 后台写法
+
+    ```java
+    @Controller
+    @RequestMapping("/json2")
+    public class JsonController2 {
+    
+        @RequestMapping("/add")
+        @ResponseBody
+        public String add(@RequestBody Order order){
+            System.out.println(order);
+            return "ok";
+        }
+    }
+    
+    ```
+
+    ps : 一定要记得添加@requestBody,否则无法解析
+
+- 发送一组pojo
+
+    - 前台
+
+        ```js
+        $('#b2').click(function () {
+            var obj1={
+            id:'1',
+                name:'爷们',
+            price:'22.1'
+            }
+            var obj2={
+                id:'2',
+            name:'爷们2',
+                price:'22.13'
+            }
+            var arr = new Array();
+            arr.push(obj1);
+            arr.push(obj2);
+            $.ajax({
+                url:'${ctx}/json2/addList',
+                type:'post',
+                contentType: "application/json",
+                data:JSON.stringify(arr),
+                success:function (data) {
+                    if (data.code == 2000){
+                        alert("成功了");
+                    }
+                }
+            })
+        })
+        
+        ```
+
+    - 后台
+
+        ```java
+        @RequestMapping("/addList")
+        @ResponseBody
+        public Map<String,Integer> addList(@RequestBody List<Order> orders){
+            System.out.println(orders);
+            Map<String,Integer> map = new HashMap<>();
+            map.put("code",2000);
+            return map;
+        }
+        ```
+
+## xml数据交互
+
+对于很多第三方开发 , 还是有很多会采用xml作为数据交互 , 比如微信.
+
+1. 添加额外的依赖
+
+    ```xml
+    <dependency>
+       <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-xml</artifactId>
+        <version>2.9.9</version>
+    </dependency>
+    ```
+
+2. 方法返回数据类型定义
+
+    ```java
+    //描述生产的类型 , 返回类型的描述 , 返回什么数据
+    @RequestMapping(value = "/m1",produces = {MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public User m1(){
+        // 希望springmvc将数据转换为xml形式user
+        User user = new User("好","11",null);
+    
+        return user;
+    }
+    ```
+
+## 文件上传
+
+### apache 上传组件方案---单文件上传
+
+- 添加依赖
+
+    ```xml
+    <!--文件上传依赖-->
+    <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>1.3.3</version>
+    </dependency>
+    
+    ```
+
+- 在springmvc中注册一个文件上传解析器
+
+    ```xml
+    <!--文件上传解析器,
+            id必须是multipartResolver原因是源码写死为这个名字-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--定义最大长度的大小 总的  单位为  bytes-->
+        <property name="maxUploadSize" value="10241024"/>
+        <!--指定上传编码-->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--指定单个文件最大上传大小-->
+        <property name="maxUploadSizePerFile" value="2000000"/>
+    </bean>
+    
+    ```
+
+- 准备一个上传的页面
+
+    ```xml
+    <form action="${ctx}/file/upload" method="post" enctype="multipart/form-data">
+        文件:<input type="file" name="file">
+        <br>
+            <input type="submit" value="提交">
+    </form>
+    
+    ```
+
+    
+
+- 后台处理程序
+
+    ```java
+    //入参就可以代表上传的文件
+    @RequestMapping("/upload")
+    public String upload(@RequestParam("file") MultipartFile multipartFile, Model model) {
+        /**
+             * 1.传到那里去
+             * 2. 传什么东西
+             * 3. 传的细节
+             */
+        // 1.不为空才上传
+        if (!multipartFile.isEmpty()) {
+            //2.获取原始的文件名
+            String originalFilename1 = multipartFile.getOriginalFilename();
+            //3. 先截取源文件的文件名前缀 , 不带后缀
+            String fileNamePrefix = originalFilename1.substring(0, originalFilename1.lastIndexOf("."));
+            //4. 加工处理文件名 , 将原文件名+时间戳
+            String newfileNamePrefix = fileNamePrefix+new Date().getTime();
+            System.out.println(new Date().getTime());
+            //5. 得到新文件名
+            String newFilename = newfileNamePrefix+originalFilename1.substring(originalFilename1.lastIndexOf('.'));
+            //6. 构建文件对象
+            File file = new File(uploadPath + newFilename);
+            //7.上传
+            try {
+                multipartFile.transferTo(file);
+                model.addAttribute("fileName",newFilename);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "file/uploadSuc";
+    }
+    ```
+
+### 多文件上传
+
+- 配置同上
+
+- 前台
+
+    ```html
+    多些几个<input>就完事
+    ```
+
+- 后台
+
+    ```java
+    把MultipartFile换成MultipartFile[]
+    遍历这个数组
+    完事
+    ```
+
+## 文件下载
+
+```java
+@Controller
+@RequestMapping("/download")
+public class DownloadController {
+
+    private static String parentPath = "D:"+ File.separator;
+
+    @RequestMapping("/down")
+    @ResponseBody
+    public String down(HttpServletResponse response){
+        //        response.setCharacterEncoding("UTF-8");
+        //通过输出流写到客户端 , 浏览器
+        // 1 获取我就爱你下载名
+        String filename = "夜景.jpg";
+        // 2 构建一个文件对象,通过Paths工具类获取一个Path对象
+        Path path = Paths.get(parentPath, filename);
+        // 3 判断它是否存在
+        if (Files.exists(path)){
+            //存在则开始下载
+            //通过response设定他的响应的类型
+            // 4 获取文件的后缀
+            String fileSuffix = filename.substring(filename.lastIndexOf(".")+1);
+            // 5 设置contenType , 只有指定它才能去下载
+            response.setContentType("application/"+fileSuffix);
+            // ISO8859-1
+            try {
+                response.addHeader("Content-Disposition","attachment; filename="+new String(filename.getBytes("UTF-8"),"ISO8859-1"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            // 6 通过Path写出去 -- end
+            try {
+                Files.copy(path,response.getOutputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            return "未找到资源文件";
+        }
+        return "ok";
+    }
+}
+```
+
+
+
