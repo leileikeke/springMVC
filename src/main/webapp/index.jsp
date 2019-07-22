@@ -44,7 +44,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="${ctx}/login2.jsp">退了</a></li>
         </ul>
     </div>
 
