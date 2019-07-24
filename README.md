@@ -230,7 +230,7 @@ springmvc 支持 ant 风格
 
     
 
-### ==@ModeraAttribute==
+### ==@ModelAttribute==
 
 - 使用方式一      如果某些对象从头到尾每次请求当中都要存在 , 不消失  , 就适合这么用.
 
@@ -314,6 +314,8 @@ springmvc 支持 ant 风格
     }) 
 
 ### ==@InitBinder==
+
+数据转换 , 将日期转换处理
 
 ### ==@PathVariable==
 
@@ -494,6 +496,7 @@ springmvc 支持 ant 风格
         return "ok";
     }
     //通过initBinder指定了user名字和modelAttribute里面user绑定
+    
     ```
 
 2. 不指定名字,根据数据类型一样可以分析解析转换成功
@@ -503,6 +506,7 @@ springmvc 支持 ant 风格
     ```java
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
+    
     ```
 
 ## json数据交互
@@ -550,6 +554,7 @@ springmvc 支持 ant 风格
     <version>1.9.13</version>
 </dependency>
 <!--添加处理json为javabean ==end== -->
+
 ```
 
 另外记得添加
@@ -557,6 +562,7 @@ springmvc 支持 ant 风格
 ```xml
 	<!--激活springmvc消息转换功能-->
     <mvc:annotation-driven/>
+
 ```
 
 ### JSON数据返回前台以及如何解析
@@ -574,6 +580,7 @@ springmvc 支持 ant 风格
     
         return order;
     }
+    
     ```
 
     
@@ -636,6 +643,7 @@ springmvc 支持 ant 风格
     
         return list;
     }
+    
     ```
 
     
@@ -656,6 +664,7 @@ springmvc 支持 ant 风格
             }
         })
     })
+    
     ```
 
 - 解析返回的Map
@@ -782,6 +791,7 @@ contentType:"application/json;charset=utf-8"
             map.put("code",2000);
             return map;
         }
+        
         ```
 
 ## xml数据交互
@@ -796,6 +806,7 @@ contentType:"application/json;charset=utf-8"
         <artifactId>jackson-dataformat-xml</artifactId>
         <version>2.9.9</version>
     </dependency>
+    
     ```
 
 2. 方法返回数据类型定义
@@ -810,6 +821,7 @@ contentType:"application/json;charset=utf-8"
     
         return user;
     }
+    
     ```
 
 ## 文件上传
@@ -891,6 +903,7 @@ contentType:"application/json;charset=utf-8"
         }
         return "file/uploadSuc";
     }
+    
     ```
 
 ### 多文件上传
@@ -901,6 +914,7 @@ contentType:"application/json;charset=utf-8"
 
     ```html
     多些几个<input>就完事
+    
     ```
 
 - 后台
@@ -909,6 +923,7 @@ contentType:"application/json;charset=utf-8"
     把MultipartFile换成MultipartFile[]
     遍历这个数组
     完事
+    
     ```
 
 ## 文件下载
@@ -955,7 +970,222 @@ public class DownloadController {
         return "ok";
     }
 }
+
 ```
 
+## 拦截器
 
+- springmvc提供了拦截器 , 类似于过滤器 , 他将在我们的请求距离处理之前先做检查 , 有权决定 , 接下来是否继续 , 对我们的请求进行加工,
+
+- 可以设计多个拦截器
+
+- 通过实现HandlerInterceptor , 这是一个接口
+
+    定义了非常重要的三个方法
+
+    - 前置处理
+    - 后置处理
+    - 完成处理
+
+### 案例一
+
+拦截器实现方法耗时统计与警告.
+
+
+
+后台代码
+
+```java
+package com.leike.interceptors;
+
+import org.apache.log4j.Logger;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/**
+ * @description:
+ * @author: leike
+ * @date: 2019-07-22 18:52
+ */
+
+/**
+ * 方法耗时统计拦截器
+ */
+public class MethodTimerInterceptor implements HandlerInterceptor {
+
+    private static final Logger LOGGER = Logger.getLogger(MethodTimerInterceptor.class);
+
+
+    //前置功能 , 开始 - 结束 , 两个点减法得到耗时
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //1 定义开始时间
+        long start = System.currentTimeMillis();
+        //2 将其存到请求域当中
+        request.setAttribute("start",start);
+        // 返回true , 才会找到下一个拦截器 , 如果没有下一个拦截器 , 则去Controller
+        LOGGER.info(request.getRequestURI()+",请求到达");
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        // 1取出start
+        long start = (long) request.getAttribute("start");
+        // 2得到end
+        long end = System.currentTimeMillis();
+        // 3记录一下耗时
+        long spendTime = end - start;
+        if (spendTime >= 1000){
+            LOGGER.warn("方法耗时严重 , 请及时处理,耗时: "+spendTime+"毫秒");
+        }else {
+            LOGGER.info("方法耗时:"+spendTime+"毫秒,速度正常");
+        }
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+    }
+}
+
+
+```
+
+springmvc的配置
+
+```xml
+<mvc:interceptors>
+    <mvc:interceptor>
+        <!--
+                /* 的写法只能拦截/name的方法 , 只能由一层 , 不是多层拦截
+            -->
+        <mvc:mapping path="/**/*"/>
+        <bean class="com.leike.interceptors.MethodTimerInterceptor">
+        </bean>
+    </mvc:interceptor>
+</mvc:interceptors>
+
+```
+
+### 案例二
+
+会话拦截器 , 做用户检查
+
+
+
+后台代码 
+
+```java
+package com.leike.interceptors;
+
+/**
+ * @description:
+ * @author: leike
+ * @date: 2019-07-22 21:34
+ */
+
+import com.leike.pojo.Use;
+import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * 会话拦截器
+ */
+public class SessionInterceptor implements HandlerInterceptor {
+
+    private static final Logger LOGGER = Logger.getLogger(SessionAttributes.class);
+
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        Object use = request.getSession().getAttribute("SESSION_USER");
+        if (use == null){
+            LOGGER.warn("你不具备权限 , 请先登录");
+            return false;
+        }
+        if (use instanceof Use){
+            Use u = (Use) use;
+            u.setPwd(null);
+            request.getSession().setAttribute("SESSION_USER",u);
+            LOGGER.info(u.getName()+"处于登录状态 , 可以执行操作");
+            return true;
+        }else {
+            LOGGER.warn("请不要搞事 , 请先登录");
+            return false;
+        }
+
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+    }
+
+}
+
+```
+
+springmvc配置
+
+```xml
+<mvc:interceptor>
+    <!--
+                只想拦截/user/**/*
+                还需要开放登录权限
+            -->
+    <mvc:mapping path="/**/*"/>
+    <!--排除登录的这个URI-->
+    <mvc:exclude-mapping path="/use/login"/>
+    <bean class="com.leike.interceptors.SessionInterceptor">
+    </bean>
+</mvc:interceptor>
+
+```
+
+将其配置在mvc:interceptors节点之下即可
+
+## 拦截器执行器顺序的问题
+
+- 如果有n个拦截器 , 并且都能拦截到某个URL的时候 , 执行顺序问题.
+
+- 在springmvc当中拦截器定义的顺序是有关系的 , 配在前面的优先拦截,按照顺序来.
+
+    i1
+
+    i2
+
+    i3
+
+    前置处理 i1>i2>i3
+
+    后置处理 i3>i2>i1
+
+### 拦截器与过滤器的比较
+
+- 相似点
+
+    都有优先处理请求的权利 , 可以决定是否将请求转移到实际处理的控制器处 , 都可以对请求或者会话当中数据进行加工
+
+- 不同点
+
+    - ==拦截器==可以做前置处理 , 也可以做后置处理 , 还可以完成后处理 , 控制的更细一些,==过滤器==只负责前面的行为而已
+    - 过滤器优先执行 .
+    - 过滤器是servlet规范里面的组件.
+    - 拦截器都是框架自己额外添加的组件.
 
