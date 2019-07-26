@@ -45,22 +45,14 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <!--
-                /* 的写法只能拦截/name的方法 , 只能由一层 , 不是多层拦截
-            -->
-            <mvc:mapping path="/**/*"/>
-            <bean class="com.leike.interceptors.MethodTimerInterceptor">
-            </bean>
-
-        </mvc:interceptor>
-
-        <mvc:interceptor>
-            <!--
                 只想拦截/user/**/*
-                还需要开放登录权限
+                还需要开放登录权限和静态资源的权限
             -->
             <mvc:mapping path="/**/*"/>
             <!--排除登录的这个URI-->
             <mvc:exclude-mapping path="/use/login"/>
+            <mvc:exclude-mapping path="/static/**/*"/>
+
             <bean class="com.leike.interceptors.SessionInterceptor">
             </bean>
         </mvc:interceptor>
