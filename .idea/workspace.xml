@@ -41,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+            <state relative-caret-position="351">
+              <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -111,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/backup.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1710" />
+            <state relative-caret-position="-324" />
           </provider>
         </entry>
       </file>
@@ -489,7 +489,7 @@
       <workItem from="1563963903423" duration="1731000" />
       <workItem from="1564031343420" duration="3808000" />
       <workItem from="1564127610225" duration="868000" />
-      <workItem from="1564134193282" duration="1830000" />
+      <workItem from="1564134193282" duration="2362000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1563523464359</created>
@@ -582,14 +582,29 @@
       <option name="project" value="LOCAL" />
       <updated>1563955605070</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="解决不登录页面无样式的bug">
+      <created>1564136301749</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1564136301749</updated>
+    </task>
+    <task id="LOCAL-00015" summary="关闭拦截器">
+      <created>1564136512880</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1564136512880</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114286000" />
+    <option name="totallyTimeSpent" value="114818000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49844238" visible="true" weight="0.20309168" />
       <window_info id="Web" order="1" side_tool="true" />
@@ -598,7 +613,7 @@
       <window_info id="Favorites" order="4" sideWeight="0.50155765" side_tool="true" weight="0.15405117" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2848233" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43139294" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.70997924" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -637,7 +652,9 @@
     <MESSAGE value="文件下载" />
     <MESSAGE value="拦截器" />
     <MESSAGE value="end" />
-    <option name="LAST_COMMIT_MESSAGE" value="end" />
+    <MESSAGE value="解决不登录页面无样式的bug" />
+    <MESSAGE value="关闭拦截器" />
+    <option name="LAST_COMMIT_MESSAGE" value="关闭拦截器" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar!/javax/servlet/ServletResponse.class">
@@ -949,11 +966,6 @@
         <state relative-caret-position="-810" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/backup.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1710" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1203">
@@ -988,10 +1000,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/backup.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+        <state relative-caret-position="351">
+          <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
         </state>
       </provider>
     </entry>
